@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Button } from "components/common";
+import { createGlobalStyle } from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "components/pages/Home";
+import Login from "components/pages/Login";
+import PageLayout from "components/common/Layout";
 
+const GlobalStyle = createGlobalStyle`
+  body{
+    background:white;
+    min-height: 100vh;
+    margin: 0;
+    color: black;
+    font-family: 'Kaushan Script';
+  }`;
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route element={<PageLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
